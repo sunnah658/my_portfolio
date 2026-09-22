@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevOps Engineer portfolio focused on cloud infrastructure, CI/CD, Kubernetes, Infrastructure as Code, observability, security, reliability, and cloud cost optimization.">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- ============================================================
+         PERSONAL INFO CHECKLIST — replace before publishing:
+         1. <title> below (currently "Rajiul Haque Sunnah")
+         2. Nav logo text ("~/sunnah.devops")
+         3. All GitHub links (currently github.com/bongodev)
+         4. Resume link (currently resume.pdf — make sure this file exists)
+         5. LinkedIn link in the footer (currently /in/sunnah)
+         6. Email in the footer (currently rajiulhaque658@gmail.com)
+         7. Footer signature name (currently "Rajiul Haque Sunnah")
+         8. Impact metrics (40%, 3×, etc.) — keep only numbers you can
+            actually stand behind in an interview
+         NOTE: the title/nav say "Sunnah" but the footer says
+         "Rajiul Haque Sunnah" — pick one name and use it consistently.
+       ============================================================ -->
+
+    <title>Rajiul Haque Sunnah | DevOps & Cloud Engineer</title> <!-- TODO: your name -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        /* Softer glass panels: less glare, gentle depth instead of hard borders */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Dimmer, calmer grid so it reads as texture, not a foreground pattern */
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.045) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+
+        /* Slightly softened gradient — less neon, easier on the eyes */
+        .gradient-text {
+            background: linear-gradient(90deg, #a5b4fc, #67e8f9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-number {
+            color: #818cf8;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .terminal-dot { width: 10px; height: 10px; border-radius: 999px; }
+
+        .skill-card, .project-card, .focus-card {
+            transition: transform .25s ease, border-color .25s ease,
+                        background-color .25s ease, box-shadow .25s ease;
+        }
+        .skill-card:hover, .project-card:hover, .focus-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px -16px rgba(99, 102, 241, 0.25);
+        }
+
+        .architecture-node {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(129, 140, 248, 0.22);
+            border-radius: 14px;
+            padding: 14px 16px;
+            text-align: center;
+            min-width: 132px;
+        }
+        .architecture-arrow {
+            color: #64748b;
+            font-size: 1rem;
+            flex: 0 0 auto;
+        }
+        .evidence-grid-card {
+            background: rgba(15, 23, 42, 0.42);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: border-color .2s ease;
+        }
+        .evidence-grid-card:hover {
+            border-color: rgba(129, 140, 248, 0.25);
+        }
+        details.production-evidence > summary {
+            list-style: none;
+        }
+        details.production-evidence > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.production-evidence[open] .evidence-chevron {
+            transform: rotate(180deg);
+        }
+        .evidence-chevron {
+            transition: transform .2s ease;
+        }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-300 antialiased selection:bg-indigo-500/30 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-x-0 border-t-0 rounded-none">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- TODO: nav logo text -->
+            <a href="#home" class="text-white font-bold text-lg md:text-xl code-font" aria-label="Go to home section">
+                ~/sunnah<span class="text-indigo-400">.devops</span>
+            </a>
+
+            <div class="space-x-7 hidden md:flex items-center text-sm font-medium tracking-wide">
+                <a href="#about" class="hover:text-indigo-400 transition">About</a>
+                <a href="#skills" class="hover:text-indigo-400 transition">Tech Stack</a>
+                <a href="#projects" class="hover:text-indigo-400 transition">Projects</a>
+                <a href="#production" class="hover:text-indigo-400 transition">Production Mindset</a>
+                <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition">Get in Touch</a>
+            </div>
+
+            <a href="#contact" class="md:hidden text-sm px-4 py-2 bg-indigo-600 text-white rounded-lg">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="home" class="relative pt-36 pb-24 px-6 overflow-hidden grid-bg">
+        <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/5 via-transparent to-[#0f172a]"></div>
+        <div class="relative max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 mb-7 text-xs font-semibold tracking-wider text-indigo-300 uppercase bg-indigo-400/10 rounded-full border border-indigo-400/20">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                Open to DevOps / Cloud / Platform Engineering opportunities
+            </div>
+
+            <p class="code-font text-cyan-400 text-sm md:text-base mb-5">DevOps Engineer • Cloud Engineer • Platform Engineering</p>
+
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-7 tracking-tight leading-tight">
+                Automating <span class="gradient-text">Reliability</span><br class="hidden md:block"> at Scale.
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+                I build secure, observable, and repeatable cloud platforms that help teams ship faster, reduce operational risk, and run infrastructure with confidence.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-14">
+                <a href="#projects" class="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-layer-group mr-2"></i> View Projects
+                </a>
+                <!-- TODO: GitHub link -->
+                <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/5 transition">
+                    <i class="fa-brands fa-github mr-2"></i> GitHub
+                </a>
+                <!-- TODO: resume file -->
+                <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/5 transition" aria-label="Download resume PDF">
+                    <i class="fa-solid fa-file-arrow-down mr-2"></i> Resume
+                </a>
+            </div>
+
+            <!-- TODO: these stats are placeholders — only keep numbers you can back up -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+                <div class="glass rounded-2xl p-5">
+                    <p class="text-2xl font-bold text-white">40%</p>
+                    <p class="text-xs text-slate-500 mt-1">Downtime reduction</p>
+                </div>
+                <div class="glass rounded-2xl p-5">
+                    <p class="text-2xl font-bold text-white">3×</p>
+                    <p class="text-xs text-slate-500 mt-1">Deployment frequency</p>
+                </div>
+                <div class="glass rounded-2xl p-5">
+                    <p class="text-lg font-bold text-white">IaC First</p>
+                    <p class="text-xs text-slate-500 mt-1">Repeatable infrastructure</p>
+                </div>
+                <div class="glass rounded-2xl p-5">
+                    <p class="text-lg font-bold text-white">Observable</p>
+                    <p class="text-xs text-slate-500 mt-1">Metrics, logs & alerts</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About / What I Solve -->
+    <section id="about" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-start">
+                <div>
+                    <div class="flex items-center gap-4 mb-7">
+                        <span class="section-number text-xl">01.</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">What I Solve</h2>
+                    </div>
+
+                    <h3 class="text-2xl md:text-3xl font-semibold text-white leading-snug mb-6">
+                        I build infrastructure that developers <span class="gradient-text">do not have to worry about.</span>
+                    </h3>
+
+                    <p class="text-slate-400 leading-8 mb-6">
+                        My focus is the space between application code and reliable production delivery: cloud infrastructure, CI/CD automation, Kubernetes, Infrastructure as Code, observability, security, and operational efficiency.
+                    </p>
+                    <p class="text-slate-400 leading-8">
+                        I approach DevOps as an engineering discipline—not a list of tools. The goal is to make delivery safer, infrastructure reproducible, systems easier to operate, and cloud environments easier to scale and optimize.
+                    </p>
+                </div>
+
+                <div class="glass rounded-3xl overflow-hidden">
+                    <div class="flex items-center gap-2 px-5 py-4 border-b border-white/10 bg-slate-950/30">
+                        <span class="terminal-dot bg-red-400"></span>
+                        <span class="terminal-dot bg-amber-400"></span>
+                        <span class="terminal-dot bg-emerald-400"></span>
+                        <span class="ml-3 code-font text-xs text-slate-500">production-mindset.sh</span>
+                    </div>
+                    <div class="p-6 md:p-8 code-font text-sm leading-8">
+                        <p><span class="text-indigo-400">$</span> optimize delivery</p>
+                        <p class="text-slate-500">→ automate build, test and deployment</p>
+                        <p><span class="text-indigo-400">$</span> engineer reliability</p>
+                        <p class="text-slate-500">→ health checks, HA, scaling, rollback</p>
+                        <p><span class="text-indigo-400">$</span> improve visibility</p>
+                        <p class="text-slate-500">→ metrics, logs, dashboards, alerts</p>
+                        <p><span class="text-indigo-400">$</span> reduce cloud waste</p>
+                        <p class="text-slate-500">→ right-size, automate, measure, iterate</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+                <div class="focus-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-bolt text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Faster Delivery</h3>
+                    <p class="text-sm text-slate-500">Automated pipelines with quality gates and repeatable deployment workflows.</p>
+                </div>
+                <div class="focus-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-server text-indigo-400 text-2xl mb-4" aria-hidden="true"></i>
+                    <h3 class="text-white font-semibold mb-2">Reliable Systems</h3>
+                    <p class="text-sm text-slate-500">Design for resiliency, scaling, recovery, health checks, and controlled change.</p>
+                </div>
+                <div class="focus-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-chart-line text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Observability</h3>
+                    <p class="text-sm text-slate-500">Metrics, logs, dashboards, alerts, and actionable operational visibility.</p>
+                </div>
+                <div class="focus-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-coins text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Cloud Efficiency</h3>
+                    <p class="text-sm text-slate-500">Build infrastructure that can scale without losing sight of cost and waste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-24 px-6 bg-slate-900/40 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-number text-xl">02.</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Technical Arsenal</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-cloud text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">Cloud</h3>
+                    <p class="text-sm text-slate-500 leading-6">AWS, Azure, GCP, VPC, IAM, Load Balancers</p>
+                </div>
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-brands fa-docker text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">Containers</h3>
+                    <p class="text-sm text-slate-500 leading-6">Docker, Kubernetes, EKS, Helm</p>
+                </div>
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-code text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">Infrastructure as Code</h3>
+                    <p class="text-sm text-slate-500 leading-6">Terraform, CloudFormation, reusable modules</p>
+                </div>
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-code-merge text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">CI/CD</h3>
+                    <p class="text-sm text-slate-500 leading-6">GitHub Actions, Jenkins, GitLab CI</p>
+                </div>
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-rotate text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">GitOps & Automation</h3>
+                    <p class="text-sm text-slate-500 leading-6">Argo CD, Ansible, Python, Bash</p>
+                </div>
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-chart-area text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">Observability</h3>
+                    <p class="text-sm text-slate-500 leading-6">Prometheus, Grafana, Loki, ELK, Alerting</p>
+                </div>
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-lock text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">DevSecOps</h3>
+                    <p class="text-sm text-slate-500 leading-6">IAM, secrets, RBAC, Trivy, SonarQube</p>
+                </div>
+                <div class="skill-card p-6 glass rounded-2xl hover:border-indigo-500/40">
+                    <i class="fa-solid fa-terminal text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-white font-semibold mb-3">Systems & Networking</h3>
+                    <p class="text-sm text-slate-500 leading-6">Linux, Git, DNS, TLS, networking fundamentals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+                <div class="flex items-center gap-4">
+                    <span class="section-number text-xl">03.</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Projects & Impact</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-xl">Selected work showing how I connect infrastructure, automation, reliability, and measurable outcomes.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <article class="project-card group relative overflow-hidden rounded-3xl glass p-8 hover:border-indigo-500/40">
+                    <div class="flex justify-between items-start mb-7">
+                        <div class="p-3 bg-indigo-500/10 rounded-xl">
+                            <i class="fa-solid fa-network-wired text-indigo-400 text-2xl"></i>
+                        </div>
+                        <!-- TODO: link to the actual project repo, not your profile -->
+                        <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition" aria-label="View Kubernetes project on GitHub">
+                            <i class="fa-brands fa-github text-2xl"></i>
+                        </a>
+                    </div>
+
+                    <p class="code-font text-xs text-indigo-400 mb-3">KUBERNETES / AWS / TERRAFORM</p>
+                    <h3 class="text-2xl font-bold text-white mb-5">Multi-Region Kubernetes Infrastructure</h3>
+
+                    <div class="space-y-5 text-sm leading-7">
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Challenge</p>
+                            <p class="text-slate-400">Improve resilience and reduce downtime for workloads running in AWS.</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Solution</p>
+                            <p class="text-slate-400">Implemented highly available Kubernetes infrastructure across AWS regions using Terraform and Amazon EKS.</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Impact</p>
+                            <p class="text-white font-semibold">Reduced downtime by 40% while making infrastructure repeatable through code.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mt-7 text-[10px] font-bold uppercase tracking-wider">
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">Terraform</span>
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">AWS</span>
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">EKS</span>
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">Kubernetes</span>
+                    </div>
+
+                    <a href="#k8s-evidence" class="inline-flex items-center mt-7 text-sm font-semibold text-indigo-300 hover:text-white transition">
+                        View Production Evidence <i class="fa-solid fa-arrow-down ml-2 text-xs"></i>
+                    </a>
+                </article>
+
+                <article class="project-card group relative overflow-hidden rounded-3xl glass p-8 hover:border-cyan-500/40">
+                    <div class="flex justify-between items-start mb-7">
+                        <div class="p-3 bg-cyan-500/10 rounded-xl">
+                            <i class="fa-solid fa-bolt text-cyan-400 text-2xl"></i>
+                        </div>
+                        <!-- TODO: link to the actual project repo, not your profile -->
+                        <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition" aria-label="View CI/CD project on GitHub">
+                            <i class="fa-brands fa-github text-2xl"></i>
+                        </a>
+                    </div>
+
+                    <p class="code-font text-xs text-cyan-400 mb-3">CI/CD / AUTOMATION / SERVERLESS</p>
+                    <h3 class="text-2xl font-bold text-white mb-5">Serverless CI/CD Automation</h3>
+
+                    <div class="space-y-5 text-sm leading-7">
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Challenge</p>
+                            <p class="text-slate-400">Manual deployment work was limiting the speed and consistency of microservice releases.</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Solution</p>
+                            <p class="text-slate-400">Automated deployment workflows for 50+ microservices using GitHub Actions and AWS Lambda.</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Impact</p>
+                            <p class="text-white font-semibold">Improved deployment frequency by 3× with a more repeatable delivery process.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mt-7 text-[10px] font-bold uppercase tracking-wider">
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">GitHub Actions</span>
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">AWS Lambda</span>
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">Python</span>
+                        <span class="px-2.5 py-1.5 bg-slate-800 rounded">Serverless</span>
+                    </div>
+
+                    <a href="#cicd-evidence" class="inline-flex items-center mt-7 text-sm font-semibold text-cyan-300 hover:text-white transition">
+                        View Production Evidence <i class="fa-solid fa-arrow-down ml-2 text-xs"></i>
+                    </a>
+                </article>
+            </div>
+
+            <div id="project-evidence" class="mt-14">
+                <div class="mb-8 max-w-3xl">
+                    <p class="code-font text-xs text-indigo-400 mb-3">PRODUCTION EVIDENCE</p>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Case Studies</h3>
+                </div>
+
+                <!-- Kubernetes evidence -->
+                <details id="k8s-evidence" class="production-evidence glass rounded-3xl overflow-hidden mb-8" open>
+                    <summary class="cursor-pointer px-6 md:px-8 py-6 flex items-center justify-between gap-4 hover:bg-white/[0.02] transition">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-indigo-500/10 rounded-xl"><i class="fa-solid fa-diagram-project text-indigo-400"></i></div>
+                            <div>
+                                <p class="code-font text-[11px] text-indigo-400 mb-1">CASE STUDY 01</p>
+                                <h4 class="text-xl font-bold text-white">Multi-Region Kubernetes Infrastructure — Evidence Pack</h4>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down evidence-chevron text-slate-500"></i>
+                    </summary>
+
+                    <div class="px-6 md:px-8 pb-8 border-t border-white/5">
+                        <div class="pt-8">
+                            <div class="flex items-center justify-between gap-4 mb-5">
+                                <div>
+                                    <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Architecture</p>
+                                    <p class="text-sm text-slate-400">Derived only from the technologies and multi-region design already described in this portfolio.</p>
+                                </div>
+                                <span class="hidden md:inline-flex text-[10px] px-2.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">VERIFIED SCOPE</span>
+                            </div>
+
+                            <div class="evidence-grid-card rounded-2xl p-5 md:p-7 overflow-x-auto">
+                                <div class="flex items-center gap-3 min-w-[760px] justify-center code-font text-xs">
+                                    <div class="architecture-node"><i class="fa-brands fa-github text-lg mb-2 text-white"></i><br>Infrastructure Code</div>
+                                    <i class="fa-solid fa-arrow-right architecture-arrow"></i>
+                                    <div class="architecture-node"><i class="fa-solid fa-code text-lg mb-2 text-indigo-300"></i><br>Terraform</div>
+                                    <i class="fa-solid fa-arrow-right architecture-arrow"></i>
+                                    <div class="architecture-node"><i class="fa-brands fa-aws text-lg mb-2 text-amber-300"></i><br>AWS</div>
+                                    <i class="fa-solid fa-arrow-right architecture-arrow"></i>
+                                    <div class="architecture-node"><i class="fa-solid fa-diagram-project text-lg mb-2 text-cyan-300"></i><br>Region A / EKS</div>
+                                    <div class="text-slate-600 text-lg">+</div>
+                                    <div class="architecture-node"><i class="fa-solid fa-diagram-project text-lg mb-2 text-cyan-300"></i><br>Region B / EKS</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-7">
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-brands fa-readme text-indigo-300"></i><h5 class="font-semibold text-white">README</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Document the problem, architecture decisions, prerequisites, repository structure, trade-offs, and the verified 40% downtime reduction.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-rocket text-indigo-300"></i><h5 class="font-semibold text-white">Deployment</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Show the actual Terraform workflow: initialize, validate, plan, review, apply, verify cluster access, then deploy workloads.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-chart-line text-indigo-300"></i><h5 class="font-semibold text-white">Monitoring</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Publish the real monitoring approach used in the project: cluster health, workload availability, resource pressure, logs, dashboards, and alert conditions.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-shield-halved text-indigo-300"></i><h5 class="font-semibold text-white">Security Controls</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Document the controls actually implemented—such as identity boundaries, secrets handling, Kubernetes access, network controls, encryption, and image policy.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-coins text-indigo-300"></i><h5 class="font-semibold text-white">Cost Considerations</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Explain why multi-region resilience is worth the extra spend, what resources drive cost, and where right-sizing or autoscaling can reduce waste.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-broom text-indigo-300"></i><h5 class="font-semibold text-white">Cleanup Strategy</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Provide a deterministic teardown path: remove workloads that create cloud dependencies, then destroy infrastructure and verify no billable resources remain.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-7 flex flex-wrap gap-3">
+                            <!-- TODO: point these at the real project repo -->
+                            <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-3 bg-indigo-600 text-white rounded-xl text-sm font-semibold hover:bg-indigo-500 transition"><i class="fa-brands fa-github mr-2"></i> Repository</a>
+                            <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-3 glass text-white rounded-xl text-sm font-semibold hover:bg-white/5 transition"><i class="fa-brands fa-readme mr-2"></i> README</a>
+                            <span class="inline-flex items-center px-4 py-3 text-xs text-slate-500"><i class="fa-solid fa-circle-info mr-2"></i>Replace profile-level links with the exact project repository.</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- CI/CD evidence -->
+                <details id="cicd-evidence" class="production-evidence glass rounded-3xl overflow-hidden">
+                    <summary class="cursor-pointer px-6 md:px-8 py-6 flex items-center justify-between gap-4 hover:bg-white/[0.02] transition">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-cyan-500/10 rounded-xl"><i class="fa-solid fa-code-branch text-cyan-400"></i></div>
+                            <div>
+                                <p class="code-font text-[11px] text-cyan-400 mb-1">CASE STUDY 02</p>
+                                <h4 class="text-xl font-bold text-white">Serverless CI/CD Automation — Evidence Pack</h4>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down evidence-chevron text-slate-500"></i>
+                    </summary>
+
+                    <div class="px-6 md:px-8 pb-8 border-t border-white/5">
+                        <div class="pt-8">
+                            <div class="flex items-center justify-between gap-4 mb-5">
+                                <div>
+                                    <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Architecture</p>
+                                    <p class="text-sm text-slate-400">Based on the portfolio's existing GitHub Actions + AWS Lambda automation for 50+ microservices.</p>
+                                </div>
+                                <span class="hidden md:inline-flex text-[10px] px-2.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">VERIFIED SCOPE</span>
+                            </div>
+
+                            <div class="evidence-grid-card rounded-2xl p-5 md:p-7 overflow-x-auto">
+                                <div class="flex items-center gap-3 min-w-[760px] justify-center code-font text-xs">
+                                    <div class="architecture-node"><i class="fa-solid fa-code-commit text-lg mb-2 text-white"></i><br>Code Change</div>
+                                    <i class="fa-solid fa-arrow-right architecture-arrow"></i>
+                                    <div class="architecture-node"><i class="fa-brands fa-github text-lg mb-2 text-white"></i><br>GitHub</div>
+                                    <i class="fa-solid fa-arrow-right architecture-arrow"></i>
+                                    <div class="architecture-node"><i class="fa-solid fa-gears text-lg mb-2 text-cyan-300"></i><br>GitHub Actions</div>
+                                    <i class="fa-solid fa-arrow-right architecture-arrow"></i>
+                                    <div class="architecture-node"><i class="fa-brands fa-aws text-lg mb-2 text-amber-300"></i><br>AWS Lambda</div>
+                                    <i class="fa-solid fa-arrow-right architecture-arrow"></i>
+                                    <div class="architecture-node"><i class="fa-solid fa-cubes text-lg mb-2 text-indigo-300"></i><br>50+ Services</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-7">
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-brands fa-readme text-cyan-300"></i><h5 class="font-semibold text-white">README</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Explain the release problem, workflow trigger, automation responsibilities, failure path, repository layout, and the verified 3× deployment-frequency improvement.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-list-check text-cyan-300"></i><h5 class="font-semibold text-white">Deployment Flow</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Show the exact stages used before production deployment—tests, build/package steps, approvals, automation invocation, verification, and rollback if applicable.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-eye text-cyan-300"></i><h5 class="font-semibold text-white">Monitoring</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Document how failed workflows and Lambda execution failures are detected, what release signals are observed, and how operators know a deployment is healthy.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-user-shield text-cyan-300"></i><h5 class="font-semibold text-white">Security Controls</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Show how credentials are protected, which identities can deploy, how permissions are scoped, and what prevents an unreviewed change from reaching production.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-scale-balanced text-cyan-300"></i><h5 class="font-semibold text-white">Cost Considerations</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Describe the cost model of event-driven automation, execution frequency, retained artifacts/logs, and when serverless automation is cheaper than always-on infrastructure.</p>
+                            </div>
+                            <div class="evidence-grid-card rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-trash-can-arrow-up text-cyan-300"></i><h5 class="font-semibold text-white">Cleanup Strategy</h5></div>
+                                <p class="text-sm text-slate-500 leading-6">Document how to remove temporary artifacts, obsolete automation resources, stale credentials, logs beyond retention, and test infrastructure without affecting production services.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-7 flex flex-wrap gap-3">
+                            <!-- TODO: point these at the real project repo -->
+                            <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-3 bg-cyan-600 text-white rounded-xl text-sm font-semibold hover:bg-cyan-500 transition"><i class="fa-brands fa-github mr-2"></i> Repository</a>
+                            <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-3 glass text-white rounded-xl text-sm font-semibold hover:bg-white/5 transition"><i class="fa-brands fa-readme mr-2"></i> README</a>
+                            <span class="inline-flex items-center px-4 py-3 text-xs text-slate-500"><i class="fa-solid fa-circle-info mr-2"></i>Replace profile-level links with the exact project repository.</span>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Production Mindset -->
+    <section id="production" class="py-24 px-6 bg-slate-900/40 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-number text-xl">04.</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">How I Think About Production</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+                <div class="focus-card glass rounded-2xl p-6 hover:border-indigo-500/40">
+                    <i class="fa-solid fa-heart-pulse text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Reliability</h3>
+                    <p class="text-sm text-slate-500 leading-6">Health checks, HA, scaling, recovery, graceful failure.</p>
+                </div>
+                <div class="focus-card glass rounded-2xl p-6 hover:border-indigo-500/40">
+                    <i class="fa-solid fa-lock text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Security</h3>
+                    <p class="text-sm text-slate-500 leading-6">Least privilege, secrets, scanning, RBAC, TLS.</p>
+                </div>
+                <div class="focus-card glass rounded-2xl p-6 hover:border-indigo-500/40">
+                    <i class="fa-solid fa-eye text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Observability</h3>
+                    <p class="text-sm text-slate-500 leading-6">Metrics, logs, dashboards, alerts, useful signals.</p>
+                </div>
+                <div class="focus-card glass rounded-2xl p-6 hover:border-indigo-500/40">
+                    <i class="fa-solid fa-code-branch text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Safe Delivery</h3>
+                    <p class="text-sm text-slate-500 leading-6">Quality gates, rollout controls, rollback, approvals.</p>
+                </div>
+                <div class="focus-card glass rounded-2xl p-6 hover:border-indigo-500/40">
+                    <i class="fa-solid fa-coins text-indigo-400 text-2xl mb-4"></i>
+                    <h3 class="text-white font-semibold mb-2">Cost</h3>
+                    <p class="text-sm text-slate-500 leading-6">Right-sizing, lifecycle policies, autoscaling, visibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recruiter / CTA -->
+    <section class="py-24 px-6">
+        <div class="max-w-5xl mx-auto glass rounded-3xl p-8 md:p-12 text-center overflow-hidden relative">
+            <div class="absolute -top-20 -right-20 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-20 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"></div>
+            <div class="relative">
+                <p class="code-font text-xs text-indigo-400 mb-3">BUILD • AUTOMATE • OBSERVE • IMPROVE</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-5">The tools are not the story. The outcome is.</h2>
+                <p class="text-slate-400 max-w-3xl mx-auto leading-8 mb-8">I use cloud, containers, automation, and observability to make software delivery safer, systems more reliable, infrastructure reproducible, and operations easier to scale.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <!-- TODO: GitHub link -->
+                    <a href="https://github.com/bongodev" target="_blank" rel="noopener noreferrer" class="px-7 py-3.5 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-200 transition">
+                        <i class="fa-brands fa-github mr-2"></i> GitHub
+                    </a>
+                    <!-- TODO: resume file -->
+                    <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="px-7 py-3.5 glass text-white font-bold rounded-xl hover:bg-white/5 transition">
+                        <i class="fa-solid fa-file-arrow-down mr-2"></i> Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="py-20 border-t border-white/5 bg-slate-950/30">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <p class="code-font text-xs text-indigo-400 mb-3">AVAILABLE FOR THE RIGHT CHALLENGE</p>
+            <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Let's Build Something Scalable</h2>
+            <p class="text-slate-400 mb-8 max-w-2xl mx-auto leading-7">Open to opportunities where I can work on cloud infrastructure, DevOps automation, platform engineering, reliability, or production systems.</p>
+
+            <!-- TODO: LinkedIn / GitHub / email — these currently don't match the name in the title -->
+            <div class="flex justify-center space-x-6 text-2xl mb-8">
+                <a href="https://www.linkedin.com/in/o-f-m-rajiul-haque-sunnah-660494419/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 transition" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/sunnah658" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 transition" aria-label="GitHub profile"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:rajiulhaque658@gmail.com" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 transition" aria-label="Send email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <p class="text-sm text-slate-500">LinkedIn • GitHub • Resume • Email</p>
+            <!-- TODO: footer signature name — make this match the title/nav name -->
+            <p class="mt-12 text-xs text-slate-600 code-font">Built with 💖 | &copy; 2026 Rajiul Haque Sunnah. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
